@@ -54,7 +54,7 @@ public class Main implements Runnable {
 
             xref.unpause(false);
             while (!xref.isRateLimited()) {
-                TimerThread.sleep_(1000);
+                TimerThread.sleep_(5_000);
                 int numWithWf = xref.getGotWfsQueue().size();
                 int numNoWf   = xref.getNowfQueue().size();
                 int total     = numWithWf + numNoWf;

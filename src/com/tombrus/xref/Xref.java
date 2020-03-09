@@ -33,7 +33,7 @@ import com.tombrus.xref.Repo.WfRepo;
 
 @SuppressWarnings("FieldCanBeLocal")
 public class Xref extends PQueueGroup {
-    private static final int NUM_SAMPLERS                = 20;
+    private static final int NUM_SAMPLERS                = 30;
     private static final int NUM_GETTERS                 = 3;
     private static final int MAX_TMPQUEUE_SIZE           = 1000;
     private static final int RATE_LIMIT_RESET_CORRECTION = 60 * 60;

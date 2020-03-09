@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-class GitCommandRunnerTest {
+class GitTest {
     @Test
     void downloadPartly() throws IOException {
         downloadTest("James121212/GBA4iOS", null, 0);
@@ -28,7 +28,7 @@ class GitCommandRunnerTest {
         System.err.println();
         System.err.println("#### " + repo);
         List<String>       log           = new ArrayList<>();
-        List<WorkFlowFile> workFlowFiles = GitCommandRunner.downloadWorkFlows(repo, log);
+        List<WorkFlowFile> workFlowFiles = GitProcedures.downloadWorkFlows(repo, log);
 
         System.err.println("## Files: " + workFlowFiles.stream().map(wf -> wf.fileName).collect(Collectors.joining(", ")));
         //        System.err.println("Log:");

@@ -291,7 +291,7 @@ public class Xref extends PQueueGroup {
             try {
                 System.err.println(pre() + "downloading: " + name);
                 List<String>       log           = new ArrayList<>();
-                List<WorkFlowFile> workFlowFiles = GitCommandRunner.downloadWorkFlows(name, log);
+                List<WorkFlowFile> workFlowFiles = GitProcedures.downloadWorkFlows(name, log);
                 if (workFlowFiles.isEmpty()) {
                     // no wfs after all....
                     System.err.println(pre() + "oops no workflows: " + name);

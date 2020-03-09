@@ -1,8 +1,8 @@
 name: Find Some More github Repositories With Actions
 
 on:
-  schedule:
-    - cron: '42 * * * *'
+  #schedule:
+  #  - cron: '42 * * * *'
   push:
 
 jobs:
@@ -23,4 +23,4 @@ jobs:
         run: ant -Djdk.home.11=$JAVA_HOME -f actionscrossref.xml
 
       - name: Run
-        run: java -cp out/artifacts/actionsCrossref_jar/actionsCrossref.jar com.tombrus.xref.Main
+        run: java -cp out/artifacts/actionsCrossref_jar/actionsCrossref.jar com.tombrus.xref.Main -short

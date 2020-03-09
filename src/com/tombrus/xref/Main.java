@@ -11,9 +11,10 @@ public class Main implements Runnable {
         new Main(args).run();
     }
 
-    private String token;
-    private Path   dir             = Paths.get("knowhow");
-    private int    saveIntervalSec = 0;
+    private String  token;
+    private Path    dir = Paths.get("knowhow");
+    private int     saveIntervalSec;
+    private boolean earlyStop;
 
     public Main(String[] args) {
         boolean nextIsToken        = false;
@@ -36,11 +37,14 @@ public class Main implements Runnable {
                 nextIsDir = true;
             } else if (a.equals("-saveInterval")) {
                 nextIsSaveInterval = true;
+            } else if (a.equals("-short")) {
+                earlyStop = true;
             } else {
                 System.err.println("args:");
                 System.err.println("    -dir           dir     # the dir where knowledge is stored         ; default is \"knowhow\"");
                 System.err.println("    -token         token   # the OAUTH token to get more API throughput; default is empty (no token)");
                 System.err.println("    -saveInterval  #sec    # the save interval in sec (>30 sec)        ; default is 0 (meaning no auto-save)");
+                System.err.println("    -short                 # only do a short session, for testing");
                 throw new Error("unrecogized argument: " + a);
             }
         }
@@ -62,10 +66,13 @@ public class Main implements Runnable {
                     double perc = (numWithWf * 100.0) / total;
                     System.err.printf("============== found %12d repositories, %7d with actions (%5.2f %%)\n", total, numWithWf, perc);
                 }
+                if (earlyStop) {
+                    System.err.println("============= short session requested, stopping");
+                    break;
+                }
             }
             xref.carefullSave(true);
-
-            //TODO push results to git.
+            GitProcedures.pushChanges();
         } catch (Throwable t) {
             System.err.println("major error detected: " + t.getMessage());
             t.printStackTrace();

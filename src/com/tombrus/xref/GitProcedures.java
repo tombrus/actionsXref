@@ -47,7 +47,7 @@ public class GitProcedures {
     public static void pushChanges() {
         List<String> log = new ArrayList<>();
         try {
-            Git git = new Git(Paths.get(","), log);
+            Git git = new Git(Paths.get("."), log);
             git.run("status");
         } catch (Exception e) {
             e.printStackTrace();

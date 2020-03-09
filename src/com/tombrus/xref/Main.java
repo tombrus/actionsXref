@@ -57,8 +57,10 @@ public class Main implements Runnable {
                 TimerThread.sleep_(1000);
                 int numWithWf = xref.getGotWfsQueue().size();
                 int numNoWf   = xref.getNowfQueue().size();
-                if (0 < numWithWf + numNoWf) {
-                    System.err.printf("============== found %12d repositories, %7d with actions (%2d %%)\n", numWithWf + numNoWf, numWithWf, (numWithWf * 100) / (numWithWf + numNoWf));
+                int total     = numWithWf + numNoWf;
+                if (0 < total) {
+                    double perc = (numWithWf * 100.0) / total;
+                    System.err.printf("============== found %12d repositories, %7d with actions (%5.2f %%)\n", total, numWithWf, perc);
                 }
             }
             xref.carefullSave(true);

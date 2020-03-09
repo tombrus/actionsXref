@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="yamlbeans">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/yamlbeans-1.14.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/lib/yamlbeans-1.14.zip!/yamlbeans-1.14/src" />
+    </SOURCES>
+  </library>
+</component>

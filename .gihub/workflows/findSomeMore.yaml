@@ -3,6 +3,7 @@ name: Find Some More github Repositories With Actions
 on:
   schedule:
     - cron: '42 * * * *'
+  push:
 
 jobs:
   find-more:
@@ -13,3 +14,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@master
 
+      - name: Java 11
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+
+      - name: Compile
+        run: ant

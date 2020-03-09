@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_actionscrossref" default="compile.module.actionscrossref">
+  <dirname property="module.actionscrossref.basedir" file="${ant.file.module_actionscrossref}"/>
+  
+  <property name="module.jdk.home.actionscrossref" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.actionscrossref" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.actionscrossref" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.actionscrossref" value="-encoding UTF-8 -source 11 -target 11 ${compiler.args}"/>
+  
+  <property name="actionscrossref.output.dir" value="${module.actionscrossref.basedir}/out/production/actionsCrossref"/>
+  <property name="actionscrossref.testoutput.dir" value="${module.actionscrossref.basedir}/out/test/actionsCrossref"/>
+  
+  <path id="actionscrossref.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="actionscrossref.module.production.classpath">
+    <path refid="${module.jdk.classpath.actionscrossref}"/>
+    <path refid="library.json.classpath"/>
+    <path refid="library.hamcrest.classpath"/>
+    <path refid="library.yamlbeans.classpath"/>
+  </path>
+  
+  <path id="actionscrossref.runtime.production.module.classpath">
+    <pathelement location="${actionscrossref.output.dir}"/>
+    <path refid="library.json.classpath"/>
+    <path refid="library.hamcrest.classpath"/>
+    <path refid="library.yamlbeans.classpath"/>
+  </path>
+  
+  <path id="actionscrossref.module.classpath">
+    <path refid="${module.jdk.classpath.actionscrossref}"/>
+    <pathelement location="${actionscrossref.output.dir}"/>
+    <path refid="library.json.classpath"/>
+    <path refid="library.junit5.classpath"/>
+    <path refid="library.hamcrest.classpath"/>
+    <path refid="library.yamlbeans.classpath"/>
+  </path>
+  
+  <path id="actionscrossref.runtime.module.classpath">
+    <pathelement location="${actionscrossref.testoutput.dir}"/>
+    <pathelement location="${actionscrossref.output.dir}"/>
+    <path refid="library.json.classpath"/>
+    <path refid="library.junit5.classpath"/>
+    <path refid="library.hamcrest.classpath"/>
+    <path refid="library.yamlbeans.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.actionscrossref">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.actionscrossref">
+    <patternset refid="excluded.from.module.actionscrossref"/>
+  </patternset>
+  
+  <path id="actionscrossref.module.sourcepath">
+    <dirset dir="${module.actionscrossref.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  <path id="actionscrossref.module.test.sourcepath">
+    <dirset dir="${module.actionscrossref.basedir}">
+      <include name="tst"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.actionscrossref" depends="compile.module.actionscrossref.production,compile.module.actionscrossref.tests" description="Compile module actionsCrossref"/>
+  
+  <target name="compile.module.actionscrossref.production" description="Compile module actionsCrossref; production classes">
+    <mkdir dir="${actionscrossref.output.dir}"/>
+    <javac destdir="${actionscrossref.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.actionscrossref}/javac">
+      <compilerarg line="${compiler.args.actionscrossref}"/>
+      <bootclasspath refid="actionscrossref.module.bootclasspath"/>
+      <classpath refid="actionscrossref.module.production.classpath"/>
+      <src refid="actionscrossref.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.actionscrossref"/>
+    </javac>
+    
+    <copy todir="${actionscrossref.output.dir}">
+      <fileset dir="${module.actionscrossref.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.actionscrossref.tests" depends="compile.module.actionscrossref.production" description="compile module actionsCrossref; test classes" unless="skip.tests">
+    <mkdir dir="${actionscrossref.testoutput.dir}"/>
+    <javac destdir="${actionscrossref.testoutput.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.actionscrossref}/javac">
+      <compilerarg line="${compiler.args.actionscrossref}"/>
+      <bootclasspath refid="actionscrossref.module.bootclasspath"/>
+      <classpath refid="actionscrossref.module.classpath"/>
+      <src refid="actionscrossref.module.test.sourcepath"/>
+      <patternset refid="excluded.from.compilation.actionscrossref"/>
+    </javac>
+    
+    <copy todir="${actionscrossref.testoutput.dir}">
+      <fileset dir="${module.actionscrossref.basedir}/tst">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="clean.module.actionscrossref" description="cleanup module">
+    <delete dir="${actionscrossref.output.dir}"/>
+    <delete dir="${actionscrossref.testoutput.dir}"/>
+  </target>
+</project>

@@ -20,4 +20,4 @@ jobs:
           java-version: 11
 
       - name: Compile
-        run: ant actionscrossref.xml
+        run: ant -f actionscrossref.xml

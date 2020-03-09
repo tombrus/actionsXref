@@ -48,6 +48,8 @@ public class GitProcedures {
         List<String> log = new ArrayList<>();
         try {
             Git git = new Git(Paths.get("."), log);
+            git.run("config", "--global", "user.email", "automation.tombrus@github.com");
+            git.run("config", "--global", "user.name", "Automation for Tom Brus");
             git.run("status");
             git.run("add", "knowhow/*");
             git.run("add", "docs/*");

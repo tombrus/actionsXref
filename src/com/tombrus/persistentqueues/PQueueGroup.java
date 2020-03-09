@@ -89,7 +89,13 @@ public class PQueueGroup {
                 System.err.println("@@@ pause for save...");
                 pause(true);
             }
+            System.err.println("@@@ save...");
+            long t00 = System.currentTimeMillis();
             save();
+            long t01 = System.currentTimeMillis();
+            lastSaveMs = t01 - t00;
+            queueHashAtSave = getQueueHash();
+            System.err.println("@@@ save done, took " + lastSaveMs + " ms");
             if (!wasPaused) {
                 unpause(true);
                 System.err.println("@@@ unpause after save....");
@@ -99,17 +105,7 @@ public class PQueueGroup {
         }
     }
 
-    public void save() {
-        System.err.println("@@@ save...");
-        long t00 = System.currentTimeMillis();
-        actualSave();
-        long t01 = System.currentTimeMillis();
-        lastSaveMs = t01 - t00;
-        queueHashAtSave = getQueueHash();
-        System.err.println("@@@ save done, took " + lastSaveMs + " ms");
-    }
-
-    protected void actualSave() {
+    protected void save() {
         diskSpace = queues.stream().mapToLong(PQueue::save).sum();
     }
 

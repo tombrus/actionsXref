@@ -49,10 +49,14 @@ public class GitProcedures {
         try {
             Git git = new Git(Paths.get("."), log);
             git.run("status");
+            git.run("add", "knowhow/*");
+            git.run("add", "docs/*");
+            git.run("commit", "-m", "newly found workflows");
+            git.run("push");
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            log.forEach(l -> System.err.println(">>> " + l));
+            log.forEach(l -> System.err.println("   ### " + l));
         }
     }
 

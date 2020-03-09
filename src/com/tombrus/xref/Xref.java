@@ -81,8 +81,8 @@ public class Xref extends PQueueGroup {
     }
 
     @Override
-    protected void actualSave() {
-        super.actualSave();
+    protected void save() {
+        super.save();
         new GenXref(this, getDir().resolve("..").resolve("docs").resolve("index.html")).generate();
     }
 

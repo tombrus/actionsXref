@@ -181,6 +181,7 @@ public class GenXref {
 
     public void generate() {
         try {
+            System.err.println("~~~generating page...");
             Map<String, Set<WorkFlowFile>> on_xref     = gatherOnXref();
             Map<String, Set<WorkFlowFile>> uses_xref   = gatherUsesXref();
             Map<String, Set<WorkFlowFile>> runson_xref = gatherRunsOnXref();
@@ -206,6 +207,7 @@ public class GenXref {
 
             Files.createDirectories(out.getParent());
             Files.write(out, lines);
+            System.err.println("~~~generating page done: " + out.toAbsolutePath());
         } catch (IOException e) {
             e.printStackTrace();
         }

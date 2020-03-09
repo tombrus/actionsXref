@@ -20,4 +20,4 @@ jobs:
           java-version: 11
 
       - name: Compile
-        run: ant -f actionscrossref.xml
+        run: ant -Djdk.home.11=$JAVA_HOME -f actionscrossref.xml

@@ -63,7 +63,7 @@ public class Main implements Runnable {
             }
             xref.carefullSave(true);
 
-            //TODO push results to git
+            //TODO push results to git.
         } catch (Throwable t) {
             System.err.println("major error detected: " + t.getMessage());
             t.printStackTrace();

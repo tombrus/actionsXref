@@ -23,4 +23,4 @@ jobs:
         run: ant -Djdk.home.11=$JAVA_HOME -f actionscrossref.xml
 
       - name: Run
-        run: java -cp out/artifacts/actionsCrossref_jar/actionsCrossref.jar com.tombrus.xref.Main -short
+        run: java -cp out/artifacts/actionsCrossref_jar/actionsCrossref.jar com.tombrus.xref.Main

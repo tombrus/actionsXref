@@ -2,8 +2,8 @@ name: Find Some More github Repositories With Actions
 
 on:
   schedule:
-    - cron: '12,42 * * * *'
-  push:
+    # - cron: '12,42 * * * *'
+    - cron: '0 0 0 * *'
 
 jobs:
   find-more:
